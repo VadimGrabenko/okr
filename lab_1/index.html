@@ -1,10 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="Vadym Hrabenko">
-    <title>Libraries for people</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E6D5B8;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #8b5e3b;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: #d2691e;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 18px;
+            display: inline-block;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h1, h2 { color: #5a3d2b; }
+        p { background-color: #ffe4c4; padding: 10px; border-radius: 5px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #5a3d2b;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #8b5e3b;
+            color: white;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="digital.html">Digital Library</a>
+    <a href="children.html">Children's Books</a>
+    <a href="public.html">Public Archives</a>
+</div>
+
+<div class="container">
+    <table>
+        <tr>
+            <th colspan="3">Library Types</th>
+        </tr>
+        <tr>
+            <td>Public Library</td>
+            <td>Digital Library</td>
+            <td>Children's Library</td>
+        </tr>
+        <tr>
+            <td><a href="../lab_2/images/public.jpg" target="_blank"><img src="../lab_2/images/public.jpg" alt="Public Library"></a></td>
+            <td><a href="../lab_2/images/digital.png" target="_blank"><img src="../lab_2/images/digital.png" alt="Digital Library"></a></td>
+            <td><a href="../lab_2/images/children.jpg" target="_blank"><img src="../lab_2/images/children.jpg" alt="Children's Library"></a></td>
+        </tr>
+        <tr>
+            <td><a href="public.html#section-public">Go to Public Library</a></td>
+            <td><a href="digital.html#section-digital">Go to Digital Library</a></td>
+            <td><a href="children.html#section-children">Go to Children's Library</a></td>
+        </tr>
+        <tr>
+            <td>Explore historical documents, rare manuscripts, and archived newspapers.</td>
+            <td>Access e-books, audiobooks, and digital research materials.</td>
+            <td>A dedicated space for young readers with interactive books and learning materials.</td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
-
