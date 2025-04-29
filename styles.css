@@ -1,0 +1,159 @@
+/* Оформлення всього тіла сторінки */
+body {
+    font-family: Arial, sans-serif;   /* стиль шрифту */
+    background-color: #E6D5B8;       /* фон сторінки */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;                /* міжрядковий інтервал */
+    text-align: justify;            /* вирівнювання тексту */
+    color: #333;                    /* базовий колір тексту */
+    font-size: 16px;                /* розмір шрифту */
+}
+
+/* Стиль навігаційної панелі */
+.navbar {
+    background-color: #8b5e3b;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Стиль посилань у navbar */
+.navbar a {
+    color: #d2691e;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+/* Контейнер для контенту */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff3e0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Заголовок, стилізований через клас */
+.heading {
+    font-size: 28px;
+    color: #5a3d2b;
+    text-align: center;
+    font-style: normal;
+    line-height: 1.4;
+}
+
+/* Посилання з класом custom-link */
+a.custom-link {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+/* Абзац з унікальним ID, стилізований з !important */
+p#important-paragraph {
+    font-size: 16px;
+    color: #5a3d2b !important;
+    background-color: #ffe4c4;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: justify !important;
+}
+
+/* Картинки в контейнері */
+.image-container img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Основні стилі для всіх посилань */
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+/* Ефект наведення на посилання */
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2 {
+    color: #5a3d2b;
+}
+
+/* Абзаци */
+p {
+    background-color: #ffe4c4;
+    padding: 10px;
+}
+
+/* Стиль для маркованого списку */
+ul {
+    list-style-type: square;
+    background-color: #fff3e0;
+    font-size: 16px;
+    color: #5a3d2b;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Стиль для нумерованого списку */
+ol {
+    list-style-type: upper-roman;
+    background-color: #f5deb3;
+    font-size: 16px;
+    color: #4b2e2e;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Стилі для списку визначень */
+dl {
+    background-color: #faf0e6;
+    padding: 20px;
+    font-family: Georgia, serif;
+    border-radius: 5px;
+}
+
+dt {
+    font-weight: bold;
+    color: #8b4513;
+    margin-top: 10px;
+}
+
+dd {
+    margin-left: 20px;
+    color: #5a3d2b;
+}
+
+/* Додаткові стилі таблиць*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fffaf0;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family: Verdana, sans-serif;
+    color: #4b3621;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid #5a3d2b;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #8b5e3b;
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    color: #333;
+}
