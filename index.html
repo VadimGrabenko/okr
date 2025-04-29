@@ -4,59 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #E6D5B8;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            background-color: #8b5e3b;
-            padding: 15px;
-            text-align: center;
-        }
-        .navbar a {
-            color: #d2691e;
-            text-decoration: none;
-            padding: 15px;
-            font-size: 18px;
-            display: inline-block;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background: #fff3e0;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        h1, h2 { color: #5a3d2b; }
-        p { background-color: #ffe4c4; padding: 10px; border-radius: 5px; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #5a3d2b;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #8b5e3b;
-            color: white;
-        }
-        .image-container img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-        }
-        
-    </style>
+
+    <!-- Підключення зовнішнього CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- Меню навігації -->
 <div class="navbar">
     <a href="index.html">Home</a>
     <a href="digital.html">Digital Library</a>
@@ -64,7 +18,21 @@
     <a href="public.html">Public Archives</a>
 </div>
 
+<!-- Основний контейнер -->
 <div class="container">
+
+    <!-- Заголовок -->
+    <h2 class="heading">Detailed Comparison</h2>
+
+    <!-- Абзац з комбінованим стилем -->
+    <p id="important-paragraph" class="custom-paragraph">
+        This paragraph demonstrates combined styling: internal, external and with !important rule. It highlights the styling approach using <strong>IDs</strong>, <strong>classes</strong> and <strong>inline/in-document styles</strong>.
+    </p>
+
+    <!-- Посилання з класом -->
+    <a class="custom-link" href="https://www.library.wales/catalogues-searching/catalogues/other-resources/a-z-of-external-resources" target="_blank">External Resource</a>
+
+    <!-- Таблиця з порівнянням типів бібліотек -->
     <table>
         <tr>
             <th colspan="3">Library Types</th>
@@ -91,6 +59,7 @@
         </tr>
     </table>
 
+    <!-- Порівняльна таблиця з inline-стилем -->
     <h2 style="margin-top: 40px;">Detailed Comparison</h2>
     <table style="background-color: #E6D5B8;">
         <thead>
@@ -112,25 +81,11 @@
             <td>General public</td>
             <td>Government-funded, promotes lifelong learning</td>
         </tr>
-        <tr>
-            <td>Digital Library</td>
-            <td>Online information access</td>
-            <td>24/7 remote access</td>
-            <td>E-books, databases, research tools</td>
-            <td>Students, researchers, remote users</td>
-            <td>Supports distance education and mobile access</td>
-        </tr>
-        <tr>
-            <td>Children’s Library</td>
-            <td>Support early literacy and education</td>
-            <td>Open to children and families</td>
-            <td>Storybooks, games, programs</td>
-            <td>Young readers</td>
-            <td>Colorful, playful, interactive environment</td>
-        </tr>
+        <!-- інші рядки за потреби -->
         </tbody>
     </table>
 
+    <!-- Таблиця з colgroup -->
     <h2 style="margin-top: 40px;">Structured Library Table</h2>
     <table border="1" cellspacing="10" cellpadding="10" style="background-color: #fffef8; width: 100%;">
         <colgroup>
@@ -138,37 +93,29 @@
             <col span="2" style="background-color: #fcebd5;">
             <col style="background-color: #f8e2cf;">
         </colgroup>
+        <thead>
         <tr>
-            <th rowspan="2">Library</th>
-            <th colspan="2">Availability</th>
-            <th rowspan="2">Special Notes</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Opening Hours</th>
+            <th>Contact</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
-            <th>Working Hours</th>
-            <th>Online Access</th>
+            <td>Main City Library</td>
+            <td>Downtown</td>
+            <td>9am - 8pm</td>
+            <td>(555) 123-4567</td>
         </tr>
-        <tr>
-            <td style="text-align: left;">Public Library</td>
-            <td style="text-align: center;">9:00 - 18:00</td>
-            <td style="text-align: center;">No</td>
-            <td rowspan="2" style="text-align: justify;">
-                Digital and Children libraries are gaining popularity due to increased online usage.
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">Digital Library</td>
-            <td style="text-align: center;">24/7</td>
-            <td style="text-align: center;">Yes</td>
-        </tr>
-        <tr>
-            <td colspan="4" style="text-align: center; background-color: #e6d5b8;">
-                Data collected from 2025 Annual Report
-            </td>
-        </tr>
+        <!-- інші рядки -->
+        </tbody>
     </table>
 
+    <!-- Вбудований ресурс -->
     <h2 style="margin-top: 40px;">What is a Library?</h2>
     <iframe src="https://en.wikipedia.org/wiki/Library" width="100%" height="400" style="border: 2px solid #8b5e3b; border-radius: 10px;"></iframe>
+
 </div>
 
 </body>
