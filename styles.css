@@ -157,3 +157,22 @@ th {
 td {
     color: #333;
 }
+
+/* 1. Контекстний селектор  вибирає всі li, які знаходяться ul усередині.container */
+.container ul li {
+    color: #4e342e;
+    font-style: italic;
+}
+
+/* 2. Дочірній селектор : тільки ті h1, які прямі діти.container */
+.container > h1 {
+    text-transform: uppercase;
+    color: #8b0000;
+}
+
+/* 3. Сусідній селектор:  вибирає p, що йде відразу після h1 , тобто перший абзац. */
+h1 + p {
+    background-color: #ffe4b5;
+    padding: 10px;
+    border-left: 5px solid #cd853f;
+}
