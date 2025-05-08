@@ -176,3 +176,72 @@ h1 + p {
     padding: 10px;
     border-left: 5px solid #cd853f;
 }
+
+.info-block {
+    background-color: #fdf5e6;
+    padding: 20px;
+    margin: 40px auto;
+    width: 80%;
+    border: 2px solid #deb887;
+    border-radius: 8px;
+    position: relative;
+}
+
+.highlight {
+    background-color: #fff8dc;
+    color: #8b0000;
+    font-weight: bold;
+    padding: 2px 4px;
+}
+
+.info-block {
+    position: relative;
+}
+
+.info-block::before {
+    content: "📘";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 24px;
+}
+
+.float-left {
+    float: left;
+    width: 45%;
+    padding: 10px;
+    background-color: #f0e68c;
+    margin-right: 5%;
+    border-radius: 5px;
+}
+
+.float-right {
+    float: right;
+    width: 45%;
+    padding: 10px;
+    background-color: #dda0dd;
+    border-radius: 5px;
+}
+
+a:link {
+    color: darkblue;
+}
+
+a:visited {
+    color: darkred;
+}
+
+a:active {
+    color: orange;
+}
+
+ul li:first-child {
+    font-weight: bold;
+    background-color: #ffe4e1;
+}
+
+.info-block h2::after {
+    content: " 📖";
+    font-size: 20px;
+    margin-left: 5px;
+}
