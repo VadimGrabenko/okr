@@ -12,6 +12,8 @@
     <!-- Підключення зовнішнього CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
+<script src="index.js"></script>
+
 <body>
 
 <!-- Меню навігації -->
@@ -120,7 +122,51 @@
     <h2 style="margin-top: 40px;">What is a Library?</h2>
     <iframe src="https://en.wikipedia.org/wiki/Library" width="100%" height="400" style="border: 2px solid #8b5e3b; border-radius: 10px;"></iframe>
 
+    <!-- Інтерфейс для взаємодії з користувачем -->
+    <div class="info-block" style="margin-top: 40px;">
+        <h2>User interaction</h2>
+
+        <button onclick="dialogWithUser()">1. Dialogue with the user</button>
+        <br><br>
+
+        <label>Surname: <input type="text" id="surnameInput"></label><br>
+        <label>Name: <input type="text" id="nameInput"></label><br>
+        <label>Position (Optional): <input type="text" id="positionInput" placeholder="Student"></label><br>
+        <button onclick="showDeveloperInfo()">2. Info about developer</button>
+        <br><br>
+
+        <button onclick="compareStrings()">3. String comparison</button>
+    </div>
+
+    <div class="info-block" id="dom-demo" style="margin-top: 40px;">
+        <h2>DOM & BOM Manipulations</h2>
+        <p id="demo-paragraph">This paragraph will be manipulated using various DOM methods.</p>
+        <button onclick="changeBackgroundTemporarily()">Change Background (30 sec)</button>
+        <button onclick="redirectToExternal()">Redirect to page about digital libraries</button>
+        <button onclick="showLibraryDomDemo()">Show Full DOM Demo</button>
+    </div>
 </div>
+
+<button onclick="basicDialogs()">Run basic JS dialogs</button>
+
+<script>
+    function basicDialogs() {
+        alert("Welcome to the JavaScript dialog demo!");
+
+        const user = prompt("What's your name?");
+        if (user) {
+            const agree = confirm(`Nice to meet you, ${user}! Do you want to continue?`);
+            if (agree) {
+                alert("Great! Let's move on.");
+            } else {
+                alert("Okay, maybe next time.");
+            }
+        } else {
+            alert("You didn't enter a name.");
+        }
+    }
+</script>
+
 
 </body>
 </html>
