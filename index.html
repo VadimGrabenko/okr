@@ -147,26 +147,35 @@
     </div>
 </div>
 
+<!-- Кнопка, яка запускає демонстрацію діалогів при натисканні -->
 <button onclick="basicDialogs()">Run basic JS dialogs</button>
 
 <script>
+    // Функція демонструє основні вбудовані методи взаємодії з користувачем
     function basicDialogs() {
+        // alert() — виводить інформаційне повідомлення
         alert("Welcome to the JavaScript dialog demo!");
 
+        // prompt() — просить користувача ввести ім’я
         const user = prompt("What's your name?");
+
+        // Якщо користувач щось ввів
         if (user) {
+            // confirm() — запитує, чи хоче користувач продовжити
             const agree = confirm(`Nice to meet you, ${user}! Do you want to continue?`);
+
+            // Якщо користувач погодився
             if (agree) {
-                alert("Great! Let's move on.");
+                alert("Great! Let's move on."); // Позитивна відповідь
             } else {
-                alert("Okay, maybe next time.");
+                alert("Okay, maybe next time."); // Відмова від продовження
             }
         } else {
+            // Якщо ім’я не було введено
             alert("You didn't enter a name.");
         }
     }
 </script>
-
 
 </body>
 </html>

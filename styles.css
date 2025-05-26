@@ -245,3 +245,11 @@ ul li:first-child {
     font-size: 20px;
     margin-left: 5px;
 }
+
+/* Клас для підсвічування елемента списку після кліку */
+.highlight {
+    background-color: #fdd835;
+    border-radius: 4px;
+    padding: 4px;
+}
+

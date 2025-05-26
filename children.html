@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Підключення зовнішнього CSS -->
     <link rel="stylesheet" href="styles.css">
-
     <title>Children's Books</title>
 </head>
+<!-- Встановлення кольору фону та скидання зовнішніх відступів -->
 <body bgcolor="#E6D5B8" style="margin: 0">
 
+<!-- Головне меню сайту -->
 <div class="navbar">
     <a href="index.html" style="color: #d2691e; text-decoration: none; padding: 15px; font-size: 18px;">Home</a>
     <a href="digital.html" style="color: #d2691e; text-decoration: none; padding: 15px; font-size: 18px;">Digital Library</a>
@@ -16,12 +18,141 @@
     <a href="public.html" style="color: #d2691e; text-decoration: none; padding: 15px; font-size: 18px;">Public Archives</a>
 </div>
 
-
+<!-- Основний вміст сторінки -->
 <div class="container">
     <h1 id="section-children">Children's Library</h1>
-    <p>Children's libraries promote the rights of the child, through different activities designed for children and adults. Activities for children
-        include exhibitions, promotions of books, and other media dealing with the rights of the child, workshops, reading, and literacy.</p>
+    <p>Children's libraries promote the rights of the child, through different activities designed for children and adults...</p>
+
+    <!-- Блок з кнопками і заголовком: реалізація різних типів обробників подій -->
+    <div class="info-block" style="margin-top: 40px;">
+        <!-- Призначення обробника через атрибут -->
+        <h2 id="book-title" onclick="showBookInfo()">Click on the book title</h2>
+        <!-- Призначення через властивість -->
+        <button id="detailsBtn">Show book details</button>
+        <!-- Призначення через addEventListener -->
+        <button id="moreBtn">More info about the library</button>
+    </div>
+
+    <!-- Список книг: реалізація делегування подій -->
+    <dl id="bookList" class="info-block">
+        <dt><b>Harry Potter</b></dt>
+        <dd>A fantasy book by J.K. Rowling.</dd>
+        <dt><b>Marta</b></dt>
+        <dd>A children’s classic by Roald Dahl.</dd>
+        <dt><b>Charlotte's Web</b></dt>
+        <dd>A story about friendship and loyalty.</dd>
+    </dl>
+
+    <!-- Меню з поведінкою через data-атрибути -->
+    <ul class="main-menu">
+        <li><button data-behavior="navigate" data-url="index.html">🏠 Home</button></li>
+        <li><button data-behavior="navigate" data-url="digital.html">Digital Library</button></li>
+        <li><button data-behavior="navigate" data-url="children.html">Children's Books</button></li>
+        <li><button data-behavior="navigate" data-url="public.html">Public Archives</button></li>
+    </ul>
 </div>
+
+<script>
+    // Обробник події, призначений через атрибут onclick у HTML
+    function showBookInfo() {
+        alert("This is 'Library Guide 2025' – a modern reference book.");
+    }
+
+    // Увесь код виконується після повного завантаження сторінки
+    window.onload = function () {
+        // --- Призначення обробника події через властивість елемента ---
+        const detailsBtn = document.getElementById("detailsBtn");
+        let shown = false;
+        detailsBtn.onclick = function () {
+            // Зміна тексту кнопки при натисканні
+            if (!shown) {
+                detailsBtn.innerHTML = "📖 Author: J. Smith<br>📅 Year: 2025<br>📘 Genre: Reference";
+            } else {
+                detailsBtn.innerHTML = "Show book details";
+            }
+            shown = !shown;
+        };
+
+        // Окремі обробники, які будуть додані до moreBtn
+        function showLibraryLocation() {
+            alert("Our library is located in Kyiv, Central Street, 15.");
+        }
+
+        function showLibraryHours() {
+            alert("Library is open from 9:00 to 18:00, Mon–Fri.");
+        }
+
+        // --- Призначення подій через addEventListener ---
+        const moreBtn = document.getElementById("moreBtn");
+        moreBtn.addEventListener("click", showLibraryLocation);
+        moreBtn.addEventListener("click", showLibraryHours);
+
+        // --- Призначення об'єкта як обробника події ---
+        const handlerObject = {
+            handleEvent(event) {
+                const proceed = confirm("handleEvent: Clicked element — " + event.currentTarget.id);
+                if (!proceed) {
+                    // Видалення обробника при відмові
+                    event.currentTarget.removeEventListener("click", handlerObject);
+                    alert("Handler removed. This dialog will not appear again.");
+                }
+            }
+        };
+        moreBtn.addEventListener("click", handlerObject);
+
+        // --- Реалізація делегування подій для списку ---
+        const bookList = document.getElementById("bookList");
+        if (bookList) {
+            // Обробник click призначено на весь список
+            bookList.onclick = function (event) {
+                const target = event.target;
+                // Визначення, чи натиснули по одному з дозволених тегів
+                if (target.tagName === "DT" || target.tagName === "DD" || target.tagName === "B") {
+                    // Знімаємо підсвічування з усіх
+                    const allItems = bookList.querySelectorAll("dt, dd, dt > b");
+                    allItems.forEach(el => el.classList.remove("highlight"));
+                    // Додаємо підсвічування потрібному
+                    if (target.tagName === "B" && target.parentElement.tagName === "DT") {
+                        target.parentElement.classList.add("highlight");
+                    } else {
+                        target.classList.add("highlight");
+                    }
+                }
+            };
+        }
+
+        // --- Реалізація поведінки через data-* атрибути ---
+        const behaviors = {
+            navigate: (element) => {
+                const url = element.dataset.url;
+                if (url) {
+                    window.location.href = url; // Перенаправлення на іншу сторінку
+                }
+            }
+        };
+
+        // Один обробник для всього меню
+        const menu = document.querySelector('.main-menu');
+        if (menu) {
+            menu.addEventListener('click', function (event) {
+                // Знаходимо найближчу кнопку з data-behavior
+                const button = event.target.closest('button[data-behavior]');
+                if (!button) return;
+
+                // Зчитуємо поведінку з data-behavior
+                const behaviorName = button.dataset.behavior;
+                const behaviorFn = behaviors[behaviorName];
+
+                // Виконуємо відповідну функцію або попереджаємо
+                if (behaviorFn) {
+                    behaviorFn(button);
+                } else {
+                    console.warn('Unknown behavior:', behaviorName);
+                }
+            });
+        }
+    };
+</script>
 
 </body>
 </html>
