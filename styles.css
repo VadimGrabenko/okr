@@ -253,3 +253,43 @@ ul li:first-child {
     padding: 4px;
 }
 
+.button-group {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.highlight-btn, .highlight-btn:link, .highlight-btn:visited {
+    display: inline-block;
+    text-align: center;
+    padding: 13px 24px;
+    background: #c8b198;
+    border: none;
+    border-radius: 8px;
+    font-size: 24px;
+    color: #402506;
+    cursor: pointer;
+    margin-right: 18px;
+    margin-bottom: 12px;
+    text-decoration: none;  /* Для <a> */
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+    box-sizing: border-box;
+}
+
+.highlight-btn.hovered,
+.highlight-btn:hover,
+.highlight-btn:focus {
+    background: #ffe082 !important;
+    color: #b44b09 !important;
+    transform: scale(1.07);
+    box-shadow: 0 2px 8px #b44b0920;
+    outline: none;
+}
+
+#draggableImage {
+    position: absolute;  /* щоб вільно рухати по екрану */
+    cursor: grab;
+    user-select: none;   /* щоб не виділялося */
+    z-index: 10;
+}
+

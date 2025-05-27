@@ -334,3 +334,57 @@ document.querySelector('.main-menu').addEventListener('click', function (event) 
         console.warn('Unknown behavior:', behaviorName); // Якщо немає такої поведінки — повідомляємо в консоль
     }
 });
+
+// LAB 8
+// --- Підсвічування кнопок (mouseover, mouseout, event.target, event.relatedTarget)
+document.querySelectorAll('.highlight-btn').forEach(btn => {
+    btn.addEventListener('mouseover', function(event) {
+        if (!event.relatedTarget || !btn.contains(event.relatedTarget)) {
+            btn.classList.add('hovered');
+        }
+    });
+    btn.addEventListener('mouseout', function(event) {
+        if (!event.relatedTarget || !btn.contains(event.relatedTarget)) {
+            btn.classList.remove('hovered');
+        }
+    });
+});
+
+
+// --- Drag and drop для картинки
+const img = document.getElementById('puzzleImg');
+let isDragging = false;
+let shiftX, shiftY;
+
+img.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    const rect = img.getBoundingClientRect();
+    shiftX = event.clientX - rect.left;
+    shiftY = event.clientY - rect.top;
+    img.style.zIndex = 1000;
+    img.style.transition = 'none'; // Вимкнути transition на час перетягування
+    event.preventDefault();
+});
+
+document.addEventListener('mousemove', function(event) {
+    if (!isDragging) return;
+    let newLeft = event.pageX - shiftX;
+    let newTop = event.pageY - shiftY;
+    // Обмеження: картинка не виходить за межі вікна
+    const container = img.parentElement;
+    const contRect = container.getBoundingClientRect();
+    const imgWidth = img.offsetWidth, imgHeight = img.offsetHeight;
+    // координати всередині контейнера
+    newLeft = Math.max(0, Math.min(newLeft, contRect.width - imgWidth));
+    newTop = Math.max(0, Math.min(newTop, contRect.height - imgHeight));
+    img.style.left = newLeft + 'px';
+    img.style.top = newTop + 'px';
+});
+
+document.addEventListener('mouseup', function() {
+    if (isDragging) {
+        isDragging = false;
+        img.style.zIndex = '';
+        img.style.transition = 'box-shadow 0.3s';
+    }
+});
