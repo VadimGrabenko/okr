@@ -50,6 +50,20 @@
         <li><button data-behavior="navigate" data-url="children.html">Children's Books</button></li>
         <li><button data-behavior="navigate" data-url="public.html">Public Archives</button></li>
     </ul>
+
+    <!-- Кнопки меню для підсвічування -->
+    <div class="button-group" style="margin-bottom: 40px;">
+        <button class="highlight-btn" id="startDialogBtn">Start Dialog</button>
+        <button class="highlight-btn" id="searchBooksBtn">Search Books</button>
+        <button class="highlight-btn" id="childrenSectionBtn">Children's Section</button>
+        <a href="digital.html" class="highlight-btn" id="goToDigitalLibraryBtn">Go to Digital Library</a>
+    </div>
+
+    <!-- Картинка для drag-and-drop -->
+    <div style="margin-top: 40px;">
+        <img src="lab8/books-puzzle.png" id="draggableImage" alt="Puzzle Book" style="width: 220px; height: 220px; border-radius: 16px; box-shadow: 0 2px 12px #aaa;">
+    </div>
+
 </div>
 
 <script>
@@ -58,20 +72,21 @@
         alert("This is 'Library Guide 2025' – a modern reference book.");
     }
 
-    // Увесь код виконується після повного завантаження сторінки
     window.onload = function () {
         // --- Призначення обробника події через властивість елемента ---
         const detailsBtn = document.getElementById("detailsBtn");
         let shown = false;
-        detailsBtn.onclick = function () {
-            // Зміна тексту кнопки при натисканні
-            if (!shown) {
-                detailsBtn.innerHTML = "📖 Author: J. Smith<br>📅 Year: 2025<br>📘 Genre: Reference";
-            } else {
-                detailsBtn.innerHTML = "Show book details";
-            }
-            shown = !shown;
-        };
+        if (detailsBtn) {
+            detailsBtn.onclick = function () {
+                // Зміна тексту кнопки при натисканні
+                if (!shown) {
+                    detailsBtn.innerHTML = "📖 Author: J. Smith<br>📅 Year: 2025<br>📘 Genre: Reference";
+                } else {
+                    detailsBtn.innerHTML = "Show book details";
+                }
+                shown = !shown;
+            };
+        }
 
         // Окремі обробники, які будуть додані до moreBtn
         function showLibraryLocation() {
@@ -84,34 +99,31 @@
 
         // --- Призначення подій через addEventListener ---
         const moreBtn = document.getElementById("moreBtn");
-        moreBtn.addEventListener("click", showLibraryLocation);
-        moreBtn.addEventListener("click", showLibraryHours);
+        if (moreBtn) {
+            moreBtn.addEventListener("click", showLibraryLocation);
+            moreBtn.addEventListener("click", showLibraryHours);
 
-        // --- Призначення об'єкта як обробника події ---
-        const handlerObject = {
-            handleEvent(event) {
-                const proceed = confirm("handleEvent: Clicked element — " + event.currentTarget.id);
-                if (!proceed) {
-                    // Видалення обробника при відмові
-                    event.currentTarget.removeEventListener("click", handlerObject);
-                    alert("Handler removed. This dialog will not appear again.");
+            // --- Призначення об'єкта як обробника події ---
+            const handlerObject = {
+                handleEvent(event) {
+                    const proceed = confirm("handleEvent: Clicked element — " + event.currentTarget.id);
+                    if (!proceed) {
+                        event.currentTarget.removeEventListener("click", handlerObject);
+                        alert("Handler removed. This dialog will not appear again.");
+                    }
                 }
-            }
-        };
-        moreBtn.addEventListener("click", handlerObject);
+            };
+            moreBtn.addEventListener("click", handlerObject);
+        }
 
         // --- Реалізація делегування подій для списку ---
         const bookList = document.getElementById("bookList");
         if (bookList) {
-            // Обробник click призначено на весь список
             bookList.onclick = function (event) {
                 const target = event.target;
-                // Визначення, чи натиснули по одному з дозволених тегів
                 if (target.tagName === "DT" || target.tagName === "DD" || target.tagName === "B") {
-                    // Знімаємо підсвічування з усіх
                     const allItems = bookList.querySelectorAll("dt, dd, dt > b");
                     allItems.forEach(el => el.classList.remove("highlight"));
-                    // Додаємо підсвічування потрібному
                     if (target.tagName === "B" && target.parentElement.tagName === "DT") {
                         target.parentElement.classList.add("highlight");
                     } else {
@@ -126,24 +138,17 @@
             navigate: (element) => {
                 const url = element.dataset.url;
                 if (url) {
-                    window.location.href = url; // Перенаправлення на іншу сторінку
+                    window.location.href = url;
                 }
             }
         };
-
-        // Один обробник для всього меню
         const menu = document.querySelector('.main-menu');
         if (menu) {
             menu.addEventListener('click', function (event) {
-                // Знаходимо найближчу кнопку з data-behavior
                 const button = event.target.closest('button[data-behavior]');
                 if (!button) return;
-
-                // Зчитуємо поведінку з data-behavior
                 const behaviorName = button.dataset.behavior;
                 const behaviorFn = behaviors[behaviorName];
-
-                // Виконуємо відповідну функцію або попереджаємо
                 if (behaviorFn) {
                     behaviorFn(button);
                 } else {
@@ -151,8 +156,66 @@
                 }
             });
         }
+
+        // --- Додаємо drag'n'drop для зображення ---
+        const img = document.getElementById("draggableImage");
+        let isDragging = false, shiftX = 0, shiftY = 0;
+
+        if (img) {
+            img.style.position = 'absolute';
+            img.style.cursor = 'grab';
+
+            img.onmousedown = function(event) {
+                event.preventDefault();
+                isDragging = true;
+                img.style.cursor = 'grabbing';
+                const rect = img.getBoundingClientRect();
+                shiftX = event.clientX - rect.left;
+                shiftY = event.clientY - rect.top;
+                img.style.zIndex = 1000;
+            };
+
+            document.onmousemove = function(event) {
+                if (!isDragging) return;
+                let newLeft = event.pageX - shiftX;
+                let newTop = event.pageY - shiftY;
+                img.style.left = newLeft + 'px';
+                img.style.top = newTop + 'px';
+            };
+
+            document.onmouseup = function() {
+                if (isDragging) {
+                    isDragging = false;
+                    img.style.cursor = 'grab';
+                }
+            };
+
+            img.ondragstart = () => false;
+        }
+
+        // --- Highlighting for buttons ---
+        const startDialogBtn = document.getElementById('startDialogBtn');
+        const searchBooksBtn = document.getElementById('searchBooksBtn');
+        const childrenSectionBtn = document.getElementById('childrenSectionBtn');
+        if (startDialogBtn) {
+            startDialogBtn.onclick = function () {
+                alert("Dialog started! (Just a demo action)");
+            };
+        }
+        if (searchBooksBtn) {
+            searchBooksBtn.onclick = function () {
+                alert("Book search opened! (Just a demo action)");
+            };
+        }
+        if (childrenSectionBtn) {
+            childrenSectionBtn.onclick = function () {
+                alert("Welcome to the Children's Section!");
+            };
+        }
+        // Go to Digital Library already works by default
     };
 </script>
+
 
 </body>
 </html>
